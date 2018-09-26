@@ -1,20 +1,22 @@
-import RPi.GPIO as GPIO, GPIO1
+import RPi.GPIO as GPIO
 import time
 
-PIR_GPIO_PIN=19
-RELAY_GPIO_PIN=23
+PIR_GPIO_PIN=18
+RELAY_GPIO_PIN=15
 
 GPIO.setmode(GPIO.BCM)
-GPIO1.setmode(GPIO.BCM)
 
 GPIO.setup(PIR_GPIO_PIN,GPIO.IN)
-GPIO1.setup(RELAY_GPIO_PIN,GPIO.OUT)
-GPIO1.output(RELAY_GPIO_PIN,GPIO.LOW)
+GPIO.setup(RELAY_GPIO_PIN,GPIO.OUT)
 print("Motion dependent security sensor")
 time.sleep(2)
 
 while True:
+    #print(GPIO.input(PIR_GPIO_PIN))
     if GPIO.input(PIR_GPIO_PIN):
-        print("Motion detected")
-        GPIO1.output(RELAY_GPIO_PIN, GPIO.HIGH)
-        
+        #print("Motion detected")
+        GPIO.output(RELAY_GPIO_PIN, GPIO.LOW)
+        time.sleep(0.5)
+        GPIO.output(RELAY_GPIO_PIN, GPIO.HIGH)
+    time.sleep(0.2)
+GPIO.cleanup()
