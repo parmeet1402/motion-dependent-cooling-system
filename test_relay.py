@@ -6,7 +6,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(23,GPIO.OUT)
 GPIO.output(23,GPIO.LOW)
 
-time.sleep(0.2)
+time.sleep(1)
 
 GPIO.output(23,GPIO.HIGH)
 GPIO.cleanup()
